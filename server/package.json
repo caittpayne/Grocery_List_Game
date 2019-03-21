@@ -2,18 +2,24 @@
   "name": "server",
   "version": "1.0.0",
   "description": "A fun, interactive grocery list game for the whole family.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "SET NODE_ENV=test&& jasmine",
+    "start": "node src/server.js"
   },
-  "author": "",
+  "author": "Cait Payne",
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^3.3.1",
     "request": "^2.88.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "mongoose": "^5.4.19"
+    "mongoose": "^5.4.19",
+    "mongoose-unique-validator": "^2.0.2",
+    "validator": "^10.11.0"
   }
 }
