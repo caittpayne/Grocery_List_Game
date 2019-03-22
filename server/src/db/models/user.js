@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcryptjs");
 
 const User = new mongoose.Schema({
@@ -19,7 +19,7 @@ const User = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    trim: true,
+    trim: true
   },
   password: {
     type: String,

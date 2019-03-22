@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
-
 const ListItems = new mongoose.Schema({
   name: {
     type: String,
-    minlength: 2
+    minlength: 2,
+    required: true
   },
-  done: {
-    type: Boolean
+  complete: {
+    type: Boolean,
+    required: true
   }
-}); 
+});
 
 const List = new mongoose.Schema({
   name: {
