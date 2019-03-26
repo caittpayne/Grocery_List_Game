@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const listController = require("../controllers/listController");
+const helper = require("../auth/helpers");
 
 router.get("/", listController.getLists);
 router.get("/:listId/items", listController.getListItems);

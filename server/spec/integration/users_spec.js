@@ -85,16 +85,11 @@ describe("routes : users", () => {
       });
     });
   });
-
-  // This will be implemented when sign-on functionality is added
-  /*
-  describe("GET /users/:id", () => {
-    beforeEach(done => {
-      this.user;
-
+  describe("POST /signIn", () => {
+    it("should sign in user with valid credentials and return JWT", done => {
       const newUser = new User({
-        email: "user@test.com",
-        name: "Test User",
+        email: "user1@test.com",
+        name: "Test",
         password: "12345678"
       });
 
@@ -102,25 +97,56 @@ describe("routes : users", () => {
         .save()
         .then(user => {
           this.user = user;
-          done();
+
+          const login = {
+            url: `${base}signIn`,
+            form: {
+              email: this.user.email,
+              password: "12345678"
+            }
+          };
+
+          request.post(login, (err, res, body) => {
+            expect(res.statusCode).toBe(200);
+            expect(res.headers["x-auth"]).not.toBeNull();
+            done();
+          });
         })
         .catch(err => {
           console.log(err);
           done();
         });
     });
-    it("should return the user data for the given ID", done => {
-      request
-        .get(`${base}/${this.user._id}`, (err, res, body) => {
-          expect(res.name).toBe("Test User");
-          expect(res.email).toBe("user@test.com");
-          expect(res.status).toBe(200);
-          done();
+    it("should not sign in user with invalid credentials and return a status code 401", done => {
+      const newUser = new User({
+        email: "user2@test.com",
+        name: "Test",
+        password: "12345678"
+      });
+
+      newUser
+        .save()
+        .then(user => {
+          this.user = user;
+
+          const login = {
+            url: `${base}signIn`,
+            form: {
+              email: this.user.email,
+              password: "12345"
+            }
+          };
+
+          request.post(login, (err, res, body) => {
+            expect(res.statusCode).toBe(401);
+
+            done();
+          });
         })
         .catch(err => {
           console.log(err);
           done();
         });
     });
-  }); */
+  });
 });

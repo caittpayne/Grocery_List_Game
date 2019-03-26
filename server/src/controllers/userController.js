@@ -1,5 +1,6 @@
 const User = require("../db/models/user");
-const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   createUser(req, res) {
@@ -27,7 +28,26 @@ module.exports = {
       });
   },
 
-  // This needs to be implemented when sign on function is added
+  signIn(req, res, next) {
+    passport.authenticate("local", { session: false }, function(err, user) {
+      if (err || !user) {
+        return res.status(401).send("Sign in failed");
+      }
+
+      req.logIn(user, { session: false }, function(err) {
+        if (err) {
+          return res.status(401).send({ error: err });
+        }
+
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+        return res
+          .status(200)
+          .header("x-auth", token)
+          .send(user);
+      });
+    })(req, res, next);
+  },
 
   getUser(req, res) {
     User.findOne({ _id: req._id })

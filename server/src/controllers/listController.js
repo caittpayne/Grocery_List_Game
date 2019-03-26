@@ -2,6 +2,7 @@ const List = require("../db/models/list");
 
 module.exports = {
   createList(req, res) {
+
     let newList = new List({
       name: req.body.name,
       userId: req.body.userId
@@ -153,11 +154,9 @@ module.exports = {
       });
   },
 
-  // need to implement sign in functionality first
-
-
   getLists(req, res) {
-      List.find({userId: req.param}).then(lists => {
+
+      List.find({userId: req.user._id}).then(lists => {
         if(!lists) {
             return res.status(404).send('You have no lists!');
         }
