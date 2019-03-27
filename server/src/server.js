@@ -1,7 +1,6 @@
 const app = require("./app");
 const http = require("http");
 const mongoose = require("./db/mongoose");
-const io = require("socket.io")(http);
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
@@ -20,14 +19,6 @@ function normalizePort(val) {
   }
   return false;
 }
-
-io.on("connection", function(socket) {
-  console.log("a user connected");
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  });
-});
 
 server.on("listening", () => {
   console.log(

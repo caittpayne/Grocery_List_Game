@@ -4,7 +4,7 @@ import "./App.css";
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import Lists from './components/Lists/Lists';
-import Items from './components/Items/Items';
+import Items from './components/Lists/Items/Items';
 
 class App extends Component {
   render() {

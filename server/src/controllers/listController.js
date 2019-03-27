@@ -5,7 +5,7 @@ module.exports = {
 
     let newList = new List({
       name: req.body.name,
-      userId: req.body.userId
+      userId: req.user._id
     });
 
     newList
@@ -155,15 +155,17 @@ module.exports = {
   },
 
   getLists(req, res) {
-
       List.find({userId: req.user._id}).then(lists => {
+
         if(!lists) {
+            console.log('no lists')
             return res.status(404).send('You have no lists!');
         }
 
         return res.status(200).send(lists);
       }).catch(err => {
           if(err) {
+              console.log(err)
               return res.status(400).send({error: err});
           }
 
