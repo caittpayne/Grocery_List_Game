@@ -1,28 +1,19 @@
 const mongoose = require("mongoose");
 
-const ListItems = new mongoose.Schema({
-  name: {
-    type: String,
-    minlength: 2,
-    required: true
-  },
-  complete: {
-    type: Boolean,
-    required: true
-  }
-});
-
 const List = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     minlength: 2
   },
+  complete: {
+    type: Boolean,
+    required: true
+  },
   userId: {
     type: String,
     required: true
-  },
-  items: [ListItems]
+  }
 });
 
 module.exports = mongoose.model("List", List);

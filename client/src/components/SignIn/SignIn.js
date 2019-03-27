@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import SignInForm from "./Form/Form";
+import SignInForm from "./Form";
+import { Container } from "reactstrap";
 import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
@@ -32,12 +33,10 @@ class SignIn extends Component {
     }
 
     return (
-      <section className="signIn">
-        <section className="login-container">
+      <Container className="signIn">
           <SignInForm goToLists={() => this.goToLists()} />
           <button onClick={() => this.goToRegister()}>Sign Up</button>
-        </section>
-      </section>
+      </Container>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterForm from "./Form/Form";
+import RegisterForm from "./Form";
 import { Redirect } from "react-router-dom";
 
 class Register extends React.Component {
