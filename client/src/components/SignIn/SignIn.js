@@ -1,31 +1,41 @@
 import React, { Component } from "react";
 import SignInForm from "./Form/Form";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            redirect: false
-        }
-    }
+    this.state = {
+      redirectLists: false,
+      redirectRegister: false
+    };
+  }
 
-
-  setRedirect = () => {
+  goToLists = () => {
     this.setState({
-      redirect: true
+      redirectLists: true
+    });
+  };
+
+  goToRegister = () => {
+    this.setState({
+      redirectRegister: true
     });
   };
 
   render() {
-    if (this.state.redirect) {
-        return <Redirect to='/lists' />
-      }
+    if (this.state.redirectLists) {
+      return <Redirect to="/lists" />;
+    } else if (this.state.redirectRegister) {
+      return <Redirect to="register" />;
+    }
+
     return (
       <section className="signIn">
         <section className="login-container">
-          <SignInForm setRedirect={() => this.setRedirect()}/>
+          <SignInForm goToLists={() => this.goToLists()} />
+          <button onClick={() => this.goToRegister()}>Sign Up</button>
         </section>
       </section>
     );

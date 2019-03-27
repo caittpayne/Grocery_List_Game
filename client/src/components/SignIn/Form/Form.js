@@ -16,7 +16,7 @@ export class SignInForm extends React.Component {
             if (token) {
               localStorage.setItem("token", token);
               setSubmitting(false);
-              this.props.setRedirect();
+              this.props.goToLists();
             }
           } catch (err) {
             console.log("error " + err);
@@ -53,7 +53,7 @@ export class SignInForm extends React.Component {
                 {touched.password && errors.password && <p>{errors.password}</p>}
                 </div>
               <button type="submit" disabled={isSubmitting}>
-                Submit Form
+                Sign In
               </button>
             </Form>
           );

@@ -1,9 +1,34 @@
-import React from 'react';
+import React from "react";
+import RegisterForm from "./Form/Form";
+import { Redirect } from "react-router-dom";
 
-const Register = () => (
-    <section className='register'>
-        Register will go here!
-    </section>
-);
+class Register extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      redirect: false
+    };
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+    return (
+      <section className="register">
+        <section className="register-container">
+          <RegisterForm setRedirect={() => this.setRedirect()} />
+        </section>
+      </section>
+    );
+  }
+}
 
 export default Register;
