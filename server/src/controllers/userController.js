@@ -43,8 +43,10 @@ module.exports = {
 
         return res
           .status(200)
-          .header("x-auth", token)
-          .send(user);
+          .send({
+              user: user,
+              token: token
+          });
       });
     })(req, res, next);
   },
