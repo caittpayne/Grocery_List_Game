@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import axios from "axios";
+import { Button } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 
 export class RegisterForm extends React.Component {
@@ -39,25 +40,33 @@ export class RegisterForm extends React.Component {
         })}
         render={({ errors, touched, isSubmitting }) => {
           return (
-            <Form>
-              <div>
-                <Field type="text" name="name" placeholder="name" />
-                {touched.name && errors.name && <p>{errors.name}</p>}
-              </div>
-              <div>
-                <Field type="text" name="email" placeholder="email" />
-                {touched.email && errors.email && <p>{errors.email}</p>}
-              </div>
-              <div>
-                <Field type="text" name="password" placeholder="password" />
-                {touched.password && errors.password && (
-                  <p>{errors.password}</p>
-                )}
-              </div>
-              <button type="submit" disabled={isSubmitting}>
-                Sign Up
-              </button>
-            </Form>
+            <div>
+              <h2>Register</h2>
+              <Form>
+                <div className="form-field">
+                  <Field type="text" name="name" placeholder="name" />
+                  {touched.name && errors.name && <p>{errors.name}</p>}
+                </div>
+                <div className="form-field">
+                  <Field type="text" name="email" placeholder="email" />
+                  {touched.email && errors.email && <p>{errors.email}</p>}
+                </div>
+                <div className="form-field">
+                  <Field type="text" name="password" placeholder="password" />
+                  {touched.password && errors.password && (
+                    <p>{errors.password}</p>
+                  )}
+                </div>
+                <Button
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Sign Up
+                </Button>
+              </Form>
+            </div>
           );
         }}
       />

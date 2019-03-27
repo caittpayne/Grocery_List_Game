@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import SignInForm from "./Form";
-import { Container } from "reactstrap";
+import { Container, Button, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import "./styles.css";
 
 class SignIn extends Component {
   constructor(props) {
@@ -33,9 +34,15 @@ class SignIn extends Component {
     }
 
     return (
-      <Container className="signIn">
-          <SignInForm goToLists={() => this.goToLists()} />
-          <button onClick={() => this.goToRegister()}>Sign Up</button>
+      <Container fluid className="sign-container">
+        <Row className="row">
+          <Col lg="12" className="form align-self-center">
+            <SignInForm goToLists={() => this.goToLists()} />
+            <Button color="link" onClick={() => this.goToRegister()}>
+              Sign Up
+            </Button>
+          </Col>
+        </Row>
       </Container>
     );
   }

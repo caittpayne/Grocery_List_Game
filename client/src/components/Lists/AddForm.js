@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import axios from "axios";
+import { Button  } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 
 export class ListForm extends React.Component {
@@ -9,9 +10,10 @@ export class ListForm extends React.Component {
     const token = localStorage.getItem("token");
 
     axios
-      .post(`${process.env.REACT_APP_URL}/lists/create`, { name }, {headers: {"x-auth": token}})
+      .post(`${process.env.REACT_APP_URL}/lists/create`, { name: name, complete: false }, {headers: {"x-auth": token}})
       .then(res => {
-        return;
+        this.props.toggleAdd();
+        this.props.getList();
       })
       .catch(err => {
         console.log("error " + err);
@@ -35,9 +37,9 @@ export class ListForm extends React.Component {
                 <Field type="text" name="name" placeholder="name" />
                 {touched.name && errors.name && <p>{errors.name}</p>}
               </div>
-              <button type="submit" disabled={isSubmitting}>
+              <Button color='primary' size='lg' type="submit" disabled={isSubmitting}>
                 Create List
-              </button>
+              </Button>
             </Form>
           );
         }}

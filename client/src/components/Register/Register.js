@@ -1,5 +1,6 @@
 import React from "react";
 import RegisterForm from "./Form";
+import { Container, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
 
 class Register extends React.Component {
@@ -22,11 +23,13 @@ class Register extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <section className="register">
-        <section className="register-container">
-          <RegisterForm setRedirect={() => this.setRedirect()} />
-        </section>
-      </section>
+      <Container fluid className="sign-container">
+        <Row className="row">
+          <Col lg="12" className="form align-self-center">
+            <RegisterForm setRedirect={() => this.setRedirect()} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

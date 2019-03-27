@@ -3,6 +3,8 @@ import axios from "axios";
 import { Button, Modal, ModalBody, Container, Row, Col } from "reactstrap";
 import AddForm from "./AddForm.js";
 import EditForm from "./EditForm";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "./styles.css";
 
 class List extends React.Component {
   constructor(props) {
@@ -70,7 +72,11 @@ class List extends React.Component {
     const token = localStorage.getItem("token");
 
     axios
-      .put(`${process.env.REACT_APP_URL}/lists/${item._id}/update`, { name: item.name, complete: !item.complete }, {headers: {"x-auth": token}})
+      .put(
+        `${process.env.REACT_APP_URL}/lists/${item._id}/update`,
+        { name: item.name, complete: !item.complete },
+        { headers: { "x-auth": token } }
+      )
       .then(res => {
         this.getList();
       })
@@ -81,36 +87,62 @@ class List extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container className="list-container">
         <Row>
           <Col sm="12">
             {this.state.lists.map((item, index) => (
               <Row key={index}>
                 <Col sm="8">
-                <p>{item.name}</p>
+                  <p>{item.name}</p>
                 </Col>
                 <Col sm="2">
-                    <button onClick={() => this.markDone(item)}>check</button>
+                  {//Check if message failed
+                  item.complete ? (
+                    <FontAwesomeIcon
+                      onClick={() => this.markDone(item)}
+                      icon="check-square"
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      onClick={() => this.markDone(item)}
+                      icon="square"
+                    />
+                  )}
                 </Col>
                 <Col sm="2">
-                    <button onClick={() => this.toggleEditOn(item)}>edit</button>
+                  <FontAwesomeIcon
+                    onClick={() => this.toggleEditOn(item)}
+                    icon="edit"
+                  />
                 </Col>
               </Row>
             ))}
           </Col>
         </Row>
         <Row>
-          <Button className="modalButton" onClick={this.toggleAdd}>
+          <Button
+            color="primary"
+            size="lg"
+            className="modalButton"
+            onClick={this.toggleAdd}
+          >
             Create List
           </Button>
           <Modal isOpen={this.state.modalAdd} toggle={this.toggleAdd}>
             <ModalBody className="modalContainer">
-              <AddForm toggleModal={() => this.toggleAdd()} />
+              <AddForm
+                toggleAdd={() => this.toggleAdd()}
+                getList={() => this.getList()}
+              />
             </ModalBody>
           </Modal>
           <Modal isOpen={this.state.modalEdit} toggle={this.toggleEditOn}>
             <ModalBody className="modalContainer">
-              <EditForm toggleEditOff={() => this.toggleEditOff()} activeList={this.state.activeList} getList={() => this.getList()} />
+              <EditForm
+                toggleEditOff={() => this.toggleEditOff()}
+                activeList={this.state.activeList}
+                getList={() => this.getList()}
+              />
             </ModalBody>
           </Modal>
         </Row>
