@@ -8,9 +8,11 @@
 
 Grocery List Game is my implementation of a mock "take-home assignment" for the Bloc certification. I was tasked with creating a grocery list web-application that could be shared in real-time by multiple people. This assignment was to be completed in a week.
 
-Requirements for this application included creating a full-stack application, with a front and back end. Features included authenticating users, implementing a database, syncing data in real-time, and a full test suite.
+Requirements for this application included creating a full-stack application, with a front and back end. Features included authenticating users, implementing a database, syncing data in real-time, and a full test suite. 
 
-You can check out the live site <a href='#' target='_blank'>here</a>.
+Users are able to register accounts with emails and passwords, which can be logged in by multiple users - for instance, a family. Multiple users can add to the grocery list, edit or delete items, and mark items as "done". Whenever a user updates the list, all other users' lists are updated as well. 
+
+You can check out the live site <a href='https://grocery-list-game.netlify.com/' target='_blank'>here</a>.
 
 ## Built With: <a id="built"></a>
 
@@ -21,7 +23,8 @@ You can check out the live site <a href='#' target='_blank'>here</a>.
 - MongoDB
 - Mongoose
 - Reactstrap
-- Heroku
+- Heroku (API)
+- Netlify (Web Client)
 
 ## Technology Choices: <a id="tech"></a>
 
@@ -41,6 +44,6 @@ In retrospect, I should have focused on the client-side of the application soone
 
 ## Future Development: <a id="future"></a>
 
-Moving forward, I'd love to update the UI more to my liking. I'm currently using the default styles for Bootstrap; however, I'd like to customize the application more. As I said above, I would like to refactor the project to include Socket.io. My implementation to grab data works; however, it's very inefficient. 
+Moving forward, I'd love to update the UI more to my liking. I'm currently using the default styles for Bootstrap; however, I didn't give myself enough time to complete the styling as I would have liked. As I said above, I would also like to refactor the project to include Socket.io. My implementation to grab data works; however, it's very inefficient. 
 
 In addition, I'd like to add a timer for the users, so they can compete to find the most items in a set amount of time. Users would have the option to "start the timer" and race to collect the most groceries. I wasn't able to implement this in the given time; however, this would be a simple feature to add in the future.
