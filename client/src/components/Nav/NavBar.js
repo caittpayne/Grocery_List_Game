@@ -39,7 +39,7 @@ class NavBar extends Component {
     return (
       <div>
         <Navbar light expand="md" className='navbar'>
-          <NavbarBrand className='logo' href="/">Grocery Game List</NavbarBrand>
+          <NavbarBrand className='logo' href="/">Grocery List Game</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
