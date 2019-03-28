@@ -2,6 +2,7 @@ import React from "react";
 import RegisterForm from "./Form";
 import { Container, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import NavBar from "../Nav/NavBar";
 
 class Register extends React.Component {
   constructor(props) {
@@ -23,13 +24,22 @@ class Register extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <Container fluid className="sign-container">
-        <Row className="row">
-          <Col lg="12" className="form align-self-center">
-            <RegisterForm setRedirect={() => this.setRedirect()} />
-          </Col>
-        </Row>
-      </Container>
+      <div className="signIn">
+        <header>
+          <NavBar />
+        </header>
+        <Container>
+          <Row className="justify-content-center">
+            <Col lg="6">
+              <Row>
+                <Col sm="10" className="form-container">
+                  <RegisterForm setRedirect={() => this.setRedirect()} />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

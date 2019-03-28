@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+.navbar {
+    background-color: white !important;
+}
+
+.logo {
+    color: #F86D20 !important;
+    font-family: 'Press Start 2P', cursive;
+}

@@ -36,20 +36,23 @@ export class ListForm extends React.Component {
         })}
         render={({ errors, touched, isSubmitting }) => {
           return (
-            <Form>
-              <div>
-                <Field type="text" name="name" placeholder="name" />
-                {touched.name && errors.name && <p>{errors.name}</p>}
-              </div>
-              <Button
-                color="primary"
-                size="lg"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Add Item
-              </Button>
-            </Form>
+            <div className='edit-form'>
+              <Form>
+                <div>
+                  <Field type="text" className='form-field' name="name" placeholder="name" />
+                  {touched.name && errors.name && <p>{errors.name}</p>}
+                </div>
+                <Button
+                  color="primary"
+                  className='form-button'
+                  size="lg"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Add
+                </Button>
+              </Form>
+            </div>
           );
         }}
       />

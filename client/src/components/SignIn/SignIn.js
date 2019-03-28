@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SignInForm from "./Form";
 import { Container, Button, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import NavBar from "../Nav/NavBar.js";
 import "./styles.css";
 
 class SignIn extends Component {
@@ -34,16 +35,25 @@ class SignIn extends Component {
     }
 
     return (
-      <Container fluid className="sign-container">
-        <Row className="row">
-          <Col lg="12" className="form align-self-center">
-            <SignInForm goToLists={() => this.goToLists()} />
-            <Button color="link" onClick={() => this.goToRegister()}>
-              Sign Up
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      <div className='signIn'>
+        <header>
+          <NavBar />
+        </header>
+        <Container>
+          <Row className='justify-content-center'>
+            <Col lg="6">
+              <Row>
+                <Col sm="10" className='form-container'>
+                  <SignInForm goToLists={() => this.goToLists()} />
+                  <Button className='register-button' color='link' onClick={() => this.goToRegister()}>
+                    Register
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

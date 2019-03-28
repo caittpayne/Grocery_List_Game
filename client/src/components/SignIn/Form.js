@@ -45,20 +45,20 @@ export class SignInForm extends React.Component {
         render={({ errors, touched, isSubmitting }) => {
           return (
             <div>
-              <h2>Sign In</h2>
-              <Form>
-                <div className="form-field">
-                  <Field type="text" name="email" placeholder="email" />
+              <Form className='form'>
+                <div>
+                  <Field className='field' type="text" name="email" placeholder="email" />
                   {touched.email && errors.email && <p>{errors.email}</p>}
                 </div>
-                <div className="form-field">
-                  <Field type="text" name="password" placeholder="password" />
+                <div>
+                  <Field className='field' type="text" name="password" placeholder="password" />
                   {touched.password && errors.password && (
                     <p>{errors.password}</p>
                   )}
                 </div>
                 <Button
                   color="primary"
+                  className='signIn-button'
                   size="large"
                   type="submit"
                   disabled={isSubmitting}

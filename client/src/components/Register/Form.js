@@ -41,29 +41,29 @@ export class RegisterForm extends React.Component {
         render={({ errors, touched, isSubmitting }) => {
           return (
             <div>
-              <h2>Register</h2>
-              <Form>
-                <div className="form-field">
-                  <Field type="text" name="name" placeholder="name" />
+              <Form className='form'>
+                <div>
+                  <Field type="text" className='field' name="name" placeholder="name" />
                   {touched.name && errors.name && <p>{errors.name}</p>}
                 </div>
-                <div className="form-field">
-                  <Field type="text" name="email" placeholder="email" />
+                <div>
+                  <Field type="text" className='field' name="email" placeholder="email" />
                   {touched.email && errors.email && <p>{errors.email}</p>}
                 </div>
-                <div className="form-field">
-                  <Field type="text" name="password" placeholder="password" />
+                <div>
+                  <Field type="text" className='field' name="password" placeholder="password" />
                   {touched.password && errors.password && (
                     <p>{errors.password}</p>
                   )}
                 </div>
                 <Button
                   color="primary"
+                  className='signIn-button'
                   size="large"
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  Sign Up
+                  Register
                 </Button>
               </Form>
             </div>

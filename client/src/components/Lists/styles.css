@@ -1,3 +1,38 @@
+.list {
+    background-color: #2DBCFF;
+    height: 100vh;
+}
 .list-container {
-    margin-top: 20px;
+    margin-top: 50px;
+    background-color: white;
+    padding-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 80%;
+}
+
+.add-column {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.add-button {
+    width: 300px;
+}
+
+.edit-form {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-field {
+    width: 300px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin-bottom: 20px;
+}
+
+.form-button {
+    width: 300px;
+    margin-top: 10px;
 }
