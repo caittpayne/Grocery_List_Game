@@ -2,7 +2,6 @@ const List = require("../db/models/list");
 
 module.exports = {
   createList(req, res) {
-    console.log(req)
     let newList = new List({
       name: req.body.name,
       complete: req.body.complete,
@@ -19,7 +18,7 @@ module.exports = {
         return res.status(200).send(list);
       })
       .catch(err => {
-          console.log(err)
+        console.log(err);
         if (err) {
           return res.status(400).send({ error: err });
         }

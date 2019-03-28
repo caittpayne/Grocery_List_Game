@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import axios from "axios";
-import { Button  } from "reactstrap";
+import { Button } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 
 export class ListForm extends React.Component {
@@ -63,11 +63,20 @@ export class ListForm extends React.Component {
                   <Field type="text" name="name" placeholder="name" />
                   {touched.name && errors.name && <p>{errors.name}</p>}
                 </div>
-                <Button color='primary'size='lg' type="submit" disabled={isSubmitting}>
+                <Button
+                  color="primary"
+                  size="lg"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   Edit Item
                 </Button>
               </Form>
-              <Button color='danger' size='lg' onClick={() => this.deleteItem()}>
+              <Button
+                color="danger"
+                size="lg"
+                onClick={() => this.deleteItem()}
+              >
                 Delete
               </Button>
             </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Button, Modal, ModalBody, Container, Row, Col } from "reactstrap";
 import AddForm from "./AddForm.js";
 import EditForm from "./EditForm";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.css";
 
 class List extends React.Component {
@@ -24,6 +24,8 @@ class List extends React.Component {
 
   componentDidMount() {
     this.getList();
+
+    setInterval(() => this.getList(), 1000);
   }
 
   getList() {
@@ -126,7 +128,7 @@ class List extends React.Component {
             className="modalButton"
             onClick={this.toggleAdd}
           >
-            Create List
+            Add Item
           </Button>
           <Modal isOpen={this.state.modalAdd} toggle={this.toggleAdd}>
             <ModalBody className="modalContainer">

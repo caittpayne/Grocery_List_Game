@@ -1,5 +1,5 @@
 const request = require("request");
-const base = "http://localhost:3000/lists/";
+const base = "http://localhost:3003/lists/";
 const server = require("../../src/server");
 
 const List = require("../../src/db/models/list");
@@ -36,6 +36,7 @@ describe("routes : lists", () => {
 
             const newList = new List({
               name: "Get Test",
+              complete: false,
               userId: this.user._id
             });
             newList
@@ -96,6 +97,7 @@ describe("routes : lists", () => {
           },
           form: {
             name: "Christmas Shopping",
+            complete: false,
             userId: `${this.user._id}`
           }
         };
@@ -118,6 +120,7 @@ describe("routes : lists", () => {
 
         const newList = new List({
           name: "Update List Test",
+          complete: false,
           userId: this.user._id
         });
 
@@ -138,7 +141,7 @@ describe("routes : lists", () => {
           headers: {
             "x-auth": ""
           },
-          form: { name: "Holiday Shopping" }
+          form: { name: "Holiday Shopping", complete: false }
         };
         request.put(options, (err, res, body) => {
           List.findOne({ _id: this.list._id })
@@ -159,6 +162,7 @@ describe("routes : lists", () => {
 
         const newList = new List({
           name: "Delete List Test",
+          complete: false,
           userId: this.user._id
         });
 
@@ -222,10 +226,7 @@ describe("routes : lists", () => {
           this.user = user;
 
           const options = {
-            url: "http://localhost:3000/users/signIn",
-            headers: {
-              "x-auth": this.token
-            },
+            url: "http://localhost:3003/users/signIn",
             form: {
               email: this.user.email,
               password: "12345678"
@@ -247,6 +248,7 @@ describe("routes : lists", () => {
       beforeEach(done => {
         const newList = new List({
           name: "Get Test",
+          complete: false,
           userId: this.user._id
         });
 
@@ -265,6 +267,7 @@ describe("routes : lists", () => {
       it("should return all lists associated with a user and status code 200", done => {
         const options = {
           url: base,
+          user: this.user,
           headers: {
             "x-auth": this.token
           }
@@ -282,11 +285,13 @@ describe("routes : lists", () => {
       it("should create a new list object with valid values and return success status code", done => {
         const options = {
           url: `${base}create`,
+          user: this.user,
           headers: {
             "x-auth": this.token
           },
           form: {
             name: "Christmas Shopping",
+            complete: false,
             userId: `${this.user._id}`
           }
         };
@@ -308,6 +313,7 @@ describe("routes : lists", () => {
       it("should not create a new list object with missing attributes and return 400 status code", done => {
         const options = {
           url: `${base}create`,
+          user: this.user,
           headers: {
             "x-auth": this.token
           },
@@ -331,11 +337,13 @@ describe("routes : lists", () => {
       it("should not create a new list object with invalid attributes and return 400 status code", done => {
         const options = {
           url: `${base}create`,
+          user: this.user,
           headers: {
             "x-auth": this.token
           },
           form: {
             name: "",
+            complete: false,
             userId: this.user._id
           }
         };
@@ -359,6 +367,7 @@ describe("routes : lists", () => {
 
         const newList = new List({
           name: "Update List Test",
+          complete: false,
           userId: this.user._id
         });
 
@@ -376,10 +385,11 @@ describe("routes : lists", () => {
       it("should update the list object with the given values and return a status code of 200", done => {
         const options = {
           url: `${base}/${this.list._id}/update`,
+          user: this.user,
           headers: {
             "x-auth": this.token
           },
-          form: { name: "Holiday Shopping" }
+          form: { name: "Holiday Shopping", complete: false }
         };
         request.put(options, (err, res, body) => {
           List.findOne({ _id: this.list._id })
@@ -397,10 +407,11 @@ describe("routes : lists", () => {
       it("should not update the list object with invalid or missing values", done => {
         const options = {
           url: `${base}/${this.list._id}/update`,
+          user: this.user,
           headers: {
             "x-auth": this.token
           },
-          form: { name: "" }
+          form: { name: "", complete: false }
         };
         request.put(options, (err, res, body) => {
           List.findOne({ _id: this.list._id })
@@ -420,6 +431,7 @@ describe("routes : lists", () => {
 
         const newList = new List({
           name: "Delete List Test",
+          complete: false,
           userId: this.user._id
         });
 
@@ -441,6 +453,7 @@ describe("routes : lists", () => {
 
             const options = {
               url: `${base}/${this.list._id}/delete`,
+              user: this.user,
               headers: {
                 "x-auth": this.token
               }

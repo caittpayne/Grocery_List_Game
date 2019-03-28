@@ -35,6 +35,7 @@ describe("List", () => {
     it("should return all lists objects associated with a user account", done => {
       const newList = new List({
         name: "Get Lists Test",
+        complete: false,
         userId: this.user._id
       });
 
@@ -45,6 +46,7 @@ describe("List", () => {
             .then(lists => {
               expect(lists.length).toBe(1);
               expect(lists[0].name).toBe("Get Lists Test");
+              expect(list[0].complete).toBe(false);
               done();
             })
             .catch(err => {
@@ -57,7 +59,6 @@ describe("List", () => {
           done();
         });
     });
-    // test to return all items?
   });
   describe("create", () => {
     beforeEach(done => {
@@ -81,7 +82,8 @@ describe("List", () => {
     describe("create a list", () => {
       it("should not create a new List object with an invalid name", done => {
         const newList = new List({
-          name: "Invalid Name Test",
+          name: "",
+          complete: false,
           userId: this.user._id
         });
 
@@ -115,6 +117,7 @@ describe("List", () => {
     it("should create a new List object with a valid name", done => {
       const newList = new List({
         name: "Create List",
+        complete: false,
         userId: this.user._id
       });
 
@@ -122,6 +125,7 @@ describe("List", () => {
         .save()
         .then(list => {
           expect(list.name).toBe("Create List");
+          expect(list.complete).toBe(false);
           expect(list.userId).toBe(`${this.user._id}`);
           done();
         })
@@ -137,6 +141,7 @@ describe("List", () => {
 
       const newList = new List({
         name: "Update Test",
+        complete: false,
         userId: this.user._id
       });
 
@@ -173,6 +178,7 @@ describe("List", () => {
 
       const newList = new List({
         name: "Delete Test",
+        complete: false,
         userId: this.user._id
       });
 

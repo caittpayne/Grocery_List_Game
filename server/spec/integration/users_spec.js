@@ -1,6 +1,6 @@
 const request = require("request");
 const server = require("../../src/server");
-const base = "http://localhost:3000/users/";
+const base = "http://localhost:3003/users/";
 
 const User = require("../../src/db/models/user");
 const mongoose = require("mongoose");
